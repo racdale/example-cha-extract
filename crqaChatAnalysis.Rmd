@@ -15,7 +15,7 @@ colnames(data) = c('speaker','word','id')
 Now that we have our data in, let's choose the two speakers we want to plot on a CRP, then extract their respective time series of word identifiers.
 
 
-```{r, echo=FALSE}
+```{r}
 speaker1 = 'INV'
 speaker2 = 'PAR'
 ts1 = data[data$speaker==speaker1,]$id # IDs from only INV
