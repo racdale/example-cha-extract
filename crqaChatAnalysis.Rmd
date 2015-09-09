@@ -1,0 +1,31 @@
+---
+title: "Demonstration of CHAT Extraction and RQA"
+output: pdf_document
+---
+
+Let's import the new text file that the iPython Notebook produced and use the crqa library to build a recurrence plot of words.
+
+```{r}
+setwd('~/Dropbox/example-cha-extract')
+library(crqa)
+data = read.table('extractedWords.txt')
+colnames(data) = c('speaker','word','id')
+```
+
+Now that we have our data in, let's choose the two speakers we want to plot on a CRP, then extract their respective time series of word identifiers.
+
+
+```{r, echo=FALSE}
+speaker1 = 'INV'
+speaker2 = 'PAR'
+ts1 = data[data$speaker==speaker1,]$id # IDs from only INV
+ts2 = data[data$speaker==speaker2,]$id # IDs from only PAR
+
+crqaResults = crqa(ts1,ts2,1,1,1,.0001,F,2,2,0,F,F) # see Coco & Dale, Frontiers paper, for specs
+RP = as.matrix(crqaResults$RP)
+pointLocations = which(RP==1,arr.ind=T) # arr.ind = return (i,j) location of points
+# plot these points
+plot(pointLocations[,1],pointLocations[,2],xlab='Time (word) for time series 1',ylab='Time (word) for time series 2',cex=.25)
+
+```
+

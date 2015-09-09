@@ -19,6 +19,3 @@ To get into all this, I'd:
   3. Open the Rmd file in RStudio and look at the R code (I also include a PDF).
 
 Hopefully this gets you going a bit.
-
-
-# example-cha-extract
